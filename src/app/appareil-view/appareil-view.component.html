@@ -1,0 +1,25 @@
+<div class="col-xs-12">
+  <h2>Mes appareils</h2>
+  <p>Mise a jour : {{lastUpdate| async | date:' EEEE d MMMM y' | uppercase}}</p>
+  <ul class="list-group">
+    <app-appareil *ngFor="let appareil of appareils, let i = index" [appareilName]="appareil.name" [id]="appareil.id"
+                  [appareilStatus]="appareil.status" [indexofAppareil]="i"></app-appareil>
+  </ul>
+  <button class="btn btn-success"  style="margin-left: 3px"
+          (click)="onAllumer()" [disabled]="!isAuth">Tout allumer
+  </button>
+
+  <button class="btn btn-danger"  style="margin-left: 3px"
+          (click)="onEteindre()" [disabled]="!isAuth">Tout eteindre
+  </button>
+
+  <button (click)="onSave()" class="btn btn-success" style="margin-left: 3px">
+    <span  class="fa fa-spinner fa-spin" *ngIf="refresh"></span>
+    <span  class="fa fa-spinner" *ngIf="!refresh"></span>
+    Sauvergarder</button>
+
+  <button (click)="onFetch()" class="btn btn-primary"  style="margin-left: 3px">
+    <span  class="fa fa-spinner fa-spin" *ngIf="refresh"></span>
+    <span  class="fa fa-spinner" *ngIf="!refresh"></span>
+    Charger</button>
+</div>
